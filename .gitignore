@@ -1,0 +1,13 @@
+/*/target/
+/*/logs/
+/*/bin/
+/*/META-INF/
+/*/.project
+/*/.classpath
+/*/.settings/
+/*/*.iml
+.idea
+*.DS_Store
+*.iws
+/out
+*.iml
