@@ -16,7 +16,7 @@
                 </a>
                 <ul class="sub">
                     <li id = "raspberry"><a  href="${ctx}/fmr/raspberry/raspberry">树莓派管理</a></li>
-                    <li><a  href="horizontal_menu.html">硬件管理</a></li>
+                    <li id = "device"><a  href="${ctx}/fmr/device/device">硬件管理</a></li>
                     <li><a  href="header-color.html">模式管理</a></li>
                     <li><a  href="language_switch_bar.html">摄像管理</a></li>
                 </ul>

@@ -61,6 +61,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>familySpringBoot</groupId>
+            <artifactId>family-device</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>familySpringBoot</groupId>
+            <artifactId>family-device</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
     <!-- Package as an executable jar -->
     <build>

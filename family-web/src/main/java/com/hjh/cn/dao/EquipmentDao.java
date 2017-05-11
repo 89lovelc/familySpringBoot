@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 /**
  * Created by 89lovelc on 2017/5/7.
  */
@@ -14,4 +16,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface EquipmentDao extends JpaRepository<EquipmentPo,String>,JpaSpecificationExecutor<EquipmentPo>{
     @Query("select count(1) from EquipmentPo where  paspberryId = :id")
     int querySizeByRaspberryId(@Param("id") String id);
+
+    @Query("from EquipmentPo where equipmentType = :type")
+    List<EquipmentPo> findByEquipmentType( @Param("type") String type);
 }

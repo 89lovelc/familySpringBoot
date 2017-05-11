@@ -19,6 +19,7 @@ public class ControlGpioExample {
         // set shutdown state for this pin
         pin.setShutdownOptions(true, PinState.LOW);
 
+
         System.out.println("--> GPIO state should be: ON");
 
         Thread.sleep(5000);

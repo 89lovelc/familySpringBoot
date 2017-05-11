@@ -2,10 +2,7 @@ package com.hjh.cn.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by 89lovelc on 2017/5/7.
@@ -17,7 +14,7 @@ public class EquipmentPo {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    private String equipmmentId;
+    private String equipmentId;
 
     private String equipmentName;
 
@@ -25,14 +22,22 @@ public class EquipmentPo {
 
     private String  equipmentGpios;
 
-    private String paspberryId;
+    private String raspberryId;
 
-    public String getEquipmmentId() {
-        return equipmmentId;
+    @Transient
+    private boolean  status;
+
+
+    @Transient
+    private RaspberryPo raspberryPo;
+
+
+    public String getEquipmentId() {
+        return equipmentId;
     }
 
-    public void setEquipmmentId(String equipmmentId) {
-        this.equipmmentId = equipmmentId;
+    public void setEquipmentId(String equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
     public String getEquipmentName() {
@@ -59,11 +64,27 @@ public class EquipmentPo {
         this.equipmentGpios = equipmentGpios;
     }
 
-    public String getPaspberryId() {
-        return paspberryId;
+    public String getRaspberryId() {
+        return raspberryId;
     }
 
-    public void setPaspberryId(String paspberryId) {
-        this.paspberryId = paspberryId;
+    public void setRaspberryId(String raspberryId) {
+        this.raspberryId = raspberryId;
+    }
+
+    public RaspberryPo getRaspberryPo() {
+        return raspberryPo;
+    }
+
+    public void setRaspberryPo(RaspberryPo raspberryPo) {
+        this.raspberryPo = raspberryPo;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
