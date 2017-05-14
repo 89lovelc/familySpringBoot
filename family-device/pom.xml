@@ -41,7 +41,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.hjh.cn.example.ControlGpioExample</mainClass>
+                            <mainClass>com.hjh.cn.example.DHT11</mainClass>
                             <classpathPrefix>lib</classpathPrefix>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>

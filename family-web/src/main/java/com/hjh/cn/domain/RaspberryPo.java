@@ -20,6 +20,7 @@ public class RaspberryPo extends  ParentPo{
 
     private String raspberryIp;
 
+
     @Transient
     private String isConnected;
 

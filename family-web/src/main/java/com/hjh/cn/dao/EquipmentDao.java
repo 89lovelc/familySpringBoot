@@ -14,7 +14,7 @@ import java.util.List;
  */
 @RepositoryRestResource(path = "equipment")
 public interface EquipmentDao extends JpaRepository<EquipmentPo,String>,JpaSpecificationExecutor<EquipmentPo>{
-    @Query("select count(1) from EquipmentPo where  paspberryId = :id")
+    @Query("select count(1) from EquipmentPo where  raspberryId = :id")
     int querySizeByRaspberryId(@Param("id") String id);
 
     @Query("from EquipmentPo where equipmentType = :type")

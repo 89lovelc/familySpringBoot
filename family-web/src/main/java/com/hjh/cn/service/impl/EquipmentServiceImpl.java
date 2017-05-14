@@ -50,6 +50,7 @@ public class EquipmentServiceImpl implements EquipmentService {
         List<SwitchPo> switchPos = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             equipmentPo = list.get(i);
+            //TODO 黄建辉
 //            boolean status =  switchDeviceService.getStatus(equipmentPo.getEquipmentGpios());
 //            switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios()));
             switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),true,equipmentPo.getEquipmentGpios()));

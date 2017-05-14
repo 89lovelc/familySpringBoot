@@ -123,7 +123,7 @@
                   <div class="col-lg-4">
                       <section class="panel">
                           <header class="panel-heading">
-                              继电器类
+                              测试
                           </header>
                           <div class="panel-body">
                           </div>
