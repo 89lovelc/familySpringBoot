@@ -12,7 +12,6 @@
     <title>家庭控制</title>
     <#include "../__css.ftl">
   </head>
-
   <body>
 
   <section id="container" >
@@ -46,7 +45,7 @@
                               <thead>
                               <tr>
                                   <th>树莓派名字</th>
-                                  <th>树莓派IP</th>
+                                  <th>树莓派IP及端口</th>
                                   <th>是否连接</th>
                                   <th>管理设备数量</th>
                                   <th>操作</th>
@@ -84,7 +83,7 @@
                                   <input v-model = "raspberry.raspberryName" class="form-control" placeholder="名称">
                               </div>
                               <div class="form-group">
-                                  <label for="exampleInputPassword1">树莓派IP</label>
+                                  <label for="exampleInputPassword1">树莓派IP及端口</label>
                                   <input v-model = "raspberry.raspberryIp" class="form-control" placeholder="xxx.xxx.xxx.xxx">
                               </div>
                           </form>

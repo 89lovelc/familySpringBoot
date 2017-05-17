@@ -13,15 +13,17 @@ public class SwitchPo implements Serializable {
 
     private String gpio;
 
+    private String raspberryIp;
+
     public SwitchPo() {
     }
 
-    public SwitchPo(String equipmentName, boolean status, String gpio) {
+    public SwitchPo(String equipmentName, boolean status, String gpio, String raspberryIp) {
         this.equipmentName = equipmentName;
         this.status = status;
         this.gpio = gpio;
+        this.raspberryIp = raspberryIp;
     }
-
 
     public String getEquipmentName() {
         return equipmentName;
@@ -45,5 +47,13 @@ public class SwitchPo implements Serializable {
 
     public void setGpio(String gpio) {
         this.gpio = gpio;
+    }
+
+    public String getRaspberryIp() {
+        return raspberryIp;
+    }
+
+    public void setRaspberryIp(String raspberryIp) {
+        this.raspberryIp = raspberryIp;
     }
 }

@@ -2,21 +2,19 @@ package com.hjh.cn.service.impl;
 
 import com.hjh.cn.dao.EquipmentDao;
 import com.hjh.cn.dao.RaspberryDao;
-import com.hjh.cn.device.SwitchDeviceService;
 import com.hjh.cn.domain.EquipmentPo;
 import com.hjh.cn.domain.RaspberryPo;
 import com.hjh.cn.po.SwitchPo;
 import com.hjh.cn.service.EquipmentService;
-import org.hibernate.annotations.Source;
+import com.hjh.cn.tools.HttpClientUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 89lovelc on 2017/5/10.
+ *
  */
 @Service
 public class EquipmentServiceImpl implements EquipmentService {
@@ -28,7 +26,6 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Autowired
     private RaspberryDao raspberryDao;
 
-    private SwitchDeviceService switchDeviceService = new SwitchDeviceService();
 
 
     @Override
@@ -51,17 +48,30 @@ public class EquipmentServiceImpl implements EquipmentService {
         for (int i = 0; i < list.size(); i++) {
             equipmentPo = list.get(i);
             //TODO 黄建辉
-//            boolean status =  switchDeviceService.getStatus(equipmentPo.getEquipmentGpios());
-//            switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios()));
-            switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),true,equipmentPo.getEquipmentGpios()));
-
-
+            //得到主机的ip 进行访问
+            RaspberryPo rasp = raspberryDao.findById(equipmentPo.getRaspberryId());
+            //进行get 请求 询问id 的状态
+            //TODO 黄建辉
+            String url = "http://"+rasp.getRaspberryIp()+"/family-sub/switch/status?gpios="+equipmentPo.getEquipmentGpios();
+            try {
+               String result =  HttpClientUtils.get(url,null,null,null);
+               boolean status = result.equals("true") ? true :false;
+               switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios(),rasp.getRaspberryIp()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return switchPos;
     }
 
     @Override
-    public boolean switchOperate(SwitchPo switchPo) {
-        return switchDeviceService.toggle(switchPo.getGpio());
+    public String switchOperate(SwitchPo switchPo) {
+        String url = "http://"+switchPo.getRaspberryIp()+"/family-sub/switch/toggle/gpios="+switchPo.getGpio();
+        try {
+           return HttpClientUtils.get(url,null,null,null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "false";
     }
 }

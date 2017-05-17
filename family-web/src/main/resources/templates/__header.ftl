@@ -11,14 +11,15 @@
             <!-- user login dropdown start-->
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <span class="username">呵呵</span>
+                    <span class="username">${Session.user.userName}</span>
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>个人信息</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> 设置</a></li>
-                    <li><a href="login.html"><i class="fa fa-key"></i> 注销</a></li>
+                    <li><a href="${ctx}/fmr/person/profile"><i class=" fa fa-suitcase"></i>个人信息</a></li>
+                    <li><a href="${ctx}/fmr/person/profile-edit"><i class="fa fa-cog"></i> 设置</a></li>
+                    <li><a href="${ctx}/fmr/lock"><i class="fa fa-key"></i> 锁定</a></li>
+                    <li><a href="${ctx}/login"><i class="fa fa-key"></i> 注销</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

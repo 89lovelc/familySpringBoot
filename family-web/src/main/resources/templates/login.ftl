@@ -40,7 +40,7 @@
             <button class="btn btn-lg btn-login btn-block" type="submit">登录</button>
             <div class="registration">
                 没有账号么?
-                <a class="" href="registration.html">
+                <a class="" href="${ctx}/fmr/registration">
                     创建账号
                 </a>
             </div>

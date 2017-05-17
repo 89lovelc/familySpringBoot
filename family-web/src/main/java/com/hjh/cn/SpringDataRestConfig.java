@@ -1,5 +1,6 @@
 package com.hjh.cn;
 
+import com.hjh.cn.domain.CameraPo;
 import com.hjh.cn.domain.RaspberryPo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ public class SpringDataRestConfig {
             @Override
             public void configureRepositoryRestConfiguration(
                     RepositoryRestConfiguration config) {
-                config.exposeIdsFor(RaspberryPo.class);
+                config.exposeIdsFor(RaspberryPo.class, CameraPo.class);
             }
         };
     }

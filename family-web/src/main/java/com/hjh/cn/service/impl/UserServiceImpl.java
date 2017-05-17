@@ -21,4 +21,29 @@ public class UserServiceImpl implements UserService {
         UserPo userPo = userDao.queryByuserNameAndPassword(userName,password);
         return userPo;
     }
+
+    @Override
+    public UserPo saveProfile(UserPo userPo) {
+        UserPo old  = userDao.findOne(userPo.getUserId());
+        userPo.setUserPassword(old.getUserPassword());
+        userPo.setAvatar(old.getAvatar());
+        userDao.save(userPo);
+        return userPo;
+    }
+
+    @Override
+    public boolean changePwd(String userId, String pwd) {
+        UserPo user = userDao.findOne(userId );
+        user.setUserPassword(pwd);
+        userDao.save(user);
+        return true;
+    }
+
+    @Override
+    public UserPo saveAvatar(String fileName, UserPo user) {
+        UserPo u = userDao.findOne(user.getUserId() );
+        u.setAvatar(fileName);
+        userDao.save(u);
+        return u;
+    }
 }

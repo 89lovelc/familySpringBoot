@@ -546,7 +546,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .dropdown-menu.extended.logout > li {
     float: left;
     text-align: center;
-    width: 50%;
+    width: 33.33%;
 }
 
 .dropdown-menu.extended.logout > li:last-child {

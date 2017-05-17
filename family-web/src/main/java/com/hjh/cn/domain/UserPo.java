@@ -1,5 +1,6 @@
 package com.hjh.cn.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,11 +20,17 @@ public class UserPo extends ParentPo {
 
     private String userName;
 
+    @JsonIgnore
     private String userPassword;
 
     private String tel;
 
     private String email;
+
+    private String birthday;
+
+    private String avatar;
+
 
 
 
@@ -67,4 +74,19 @@ public class UserPo extends ParentPo {
         this.email = email;
     }
 
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

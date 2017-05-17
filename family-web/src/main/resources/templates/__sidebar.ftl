@@ -18,12 +18,12 @@
                     <li id = "raspberry"><a  href="${ctx}/fmr/raspberry/raspberry">树莓派管理</a></li>
                     <li id = "device"><a  href="${ctx}/fmr/device/device">硬件管理</a></li>
                     <li><a  href="header-color.html">模式管理</a></li>
-                    <li><a  href="language_switch_bar.html">摄像管理</a></li>
+                    <li id="camera"><a  href="${ctx}/fmr/camera/camera">摄像管理</a></li>
                 </ul>
             </li>
             <li>
-                <a href="google_maps.html" >
-                    <i class="fa fa-map-marker"></i>
+                <a  id = "profile" href="${ctx}/fmr/person/profile" >
+                    <i class="fa fa-user"></i>
                     <span>个人中心</span>
                 </a>
             </li>

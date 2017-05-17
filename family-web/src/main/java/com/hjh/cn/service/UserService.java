@@ -8,4 +8,10 @@ import com.hjh.cn.domain.UserPo;
 public interface UserService {
 
     UserPo validUser(String userName, String password);
+
+    UserPo saveProfile(UserPo userPo);
+
+    boolean changePwd(String userId, String pwd);
+
+    UserPo saveAvatar(String fileName, UserPo user);
 }

@@ -42,8 +42,7 @@ public class EquipmentController {
     @RequestMapping(path = "/switch/operate")
     @ResponseBody
     public String switchOperate(SwitchPo switchPo){
-//        return equipmentService.switchOperate(switchPo)+"";
-        return "false";
+         return equipmentService.switchOperate(switchPo);
     }
 
 

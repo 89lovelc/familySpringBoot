@@ -13,5 +13,5 @@ public interface EquipmentService {
 
     List<SwitchPo> getSwitchStatus();
 
-    boolean switchOperate(SwitchPo switchPo);
+    String switchOperate(SwitchPo switchPo);
 }
