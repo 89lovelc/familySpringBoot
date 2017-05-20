@@ -10,10 +10,10 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>家庭控制</title>
     <#include "__css.ftl">
-
-
-      <link href="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-      <link rel="stylesheet" type="text/css" href="${ctx}/static/flatlab/css/gallery.css" /
+    <link href="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+    <link rel="stylesheet"  href="${ctx}/static/flatlab/css/gallery.css" />
+    <link type="text/css" href = "${ctx}/static/element-ui/element-ui.min.css">
+    <script type="text/javascript" src="${ctx}/static/element-ui/element-ui.min.js"></script>
   </head>
 
   <body>
@@ -117,9 +117,21 @@
                   <div class="col-lg-4">
                       <section class="panel">
                           <header class="panel-heading">
-                              步进电机
+                              音乐
                           </header>
                           <div class="panel-body">
+                              <table class="table table-striped table-advance table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>音量</th>
+                                      <th><el-slider v-model="value2"></el-slider></th>
+                                  </tr>
+                                  </thead>
+                                  <tbody id = "tbody">
+
+                                  </tbody>
+                              </table>
+
                           </div>
                       </section>
                   </div>
@@ -170,10 +182,10 @@
   <script src="${ctx}/static/flatlab/js/jquery.tagsinput.js"></script>
   <!--custom checkbox & radio-->
   <script type="text/javascript" src="${ctx}/static/flatlab/js/ga.js"></script>
-
   <script src="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.js"></script>
 
   <script>
+
     function countUp(count,vue,str)
     {
         var div_by = 15,
@@ -224,7 +236,8 @@
                   count1:0,
                   count2:0,
                   count3:0,
-                  cameras:[]
+                  cameras:[],
+                  value2:30
               }
           },
           methods :{
@@ -264,25 +277,25 @@
   </script>
 
   <script>
-      //owl carousel
-      $(document).ready(function() {
-          $("#owl-demo").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true,
-			  autoPlay:true
-
-          });
-      });
+//      //owl carousel
+//      $(document).ready(function() {
+//          $("#owl-demo").owlCarousel({
+//              navigation : true,
+//              slideSpeed : 300,
+//              paginationSpeed : 400,
+//              singleItem : true,
+//			  autoPlay:true
+//
+//          });
+//      });
       //custom select box
       $(function(){
           $('select.styled').customSelect();
       });
-      $(window).on("resize",function(){
-          var owl = $("#owl-demo").data("owlCarousel");
-          owl.reinit();
-      });
+//      $(window).on("resize",function(){
+//          var owl = $("#owl-demo").data("owlCarousel");
+//          owl.reinit();
+//      });
       $("#controlBar").addClass("active");
   </script>
   </body>

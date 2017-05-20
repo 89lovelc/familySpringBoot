@@ -5,8 +5,6 @@
 <link href="${ctx}/static/flatlab/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="${ctx}/static/flatlab/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
 <link rel="stylesheet" href="${ctx}/static/flatlab/css/owl.carousel.css" type="text/css">
-<!--right slidebar-->
-<link href="${ctx}/static/flatlab/css/slidebars.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="${ctx}/static/flatlab/css/style.css" rel="stylesheet">
 <link href="${ctx}/static/flatlab/css/style-responsive.css" rel="stylesheet" />

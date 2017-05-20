@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -27,7 +31,6 @@ public class FileSystemStorageService implements StorageService {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
             }
-
             String fileName = new Date().getTime() + file.getOriginalFilename();
             Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
             return fileName;
@@ -73,6 +76,21 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
+    }
+
+    @Override
+    public List<String> getMusicList() {
+        List<String> list = new ArrayList<>();
+        File file = rootLocation.toFile();
+        if(file.isDirectory()){
+            File [] files = file.listFiles();
+            for (File f :files) {
+               if(f.getName().endsWith("mp3")){
+                   list.add(f.getName());
+               }
+            }
+        }
+        return list;
     }
 
     @Override

@@ -13,6 +13,7 @@
         <module>family-device</module>
         <module>family-source</module>
         <module>family-subordinate</module>
+        <module>family-music</module>
     </modules>
 
     <parent>
