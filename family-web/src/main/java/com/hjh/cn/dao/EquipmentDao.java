@@ -19,4 +19,8 @@ public interface EquipmentDao extends JpaRepository<EquipmentPo,String>,JpaSpeci
 
     @Query("from EquipmentPo where equipmentType = :type")
     List<EquipmentPo> findByEquipmentType( @Param("type") String type);
+
+
+    @Query("from EquipmentPo where equipmentId = :equipmentId")
+    EquipmentPo findById(@Param("equipmentId") String equipmentId);
 }

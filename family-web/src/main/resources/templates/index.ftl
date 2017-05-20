@@ -10,6 +10,10 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <title>家庭控制</title>
     <#include "__css.ftl">
+
+
+      <link href="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" href="${ctx}/static/flatlab/css/gallery.css" /
   </head>
 
   <body>
@@ -125,6 +129,22 @@
                               摄像头
                           </header>
                           <div class="panel-body">
+                              <table class="table table-striped table-advance table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>摄像头名称</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody id = "tbody">
+                                  <tr v-for = "p in cameras" >
+                                      <td>{{p.cameraName}}</td>
+                                      <td>
+                                          <button class="btn btn-primary btn-xs"  @click="viewCamera(p)"><i class="fa fa-eye"></i></button>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
                           </div>
                       </section>
                   </div>
@@ -151,11 +171,12 @@
   <!--custom checkbox & radio-->
   <script type="text/javascript" src="${ctx}/static/flatlab/js/ga.js"></script>
 
+  <script src="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.js"></script>
 
   <script>
     function countUp(count,vue,str)
     {
-        var div_by = 100,
+        var div_by = 15,
                 speed = Math.round(count / div_by),
                 run_count = 1,
                 int_speed = 24;
@@ -165,8 +186,8 @@
                 vue[str] = speed * run_count;
                 run_count++;
             } else if(vue[str] < count) {
-                var curr_count = vue[str]  + 1;
-                vue[str]  = curr_count;
+                var curr_count = vue[str] - 0 + 0.1;
+                vue[str]  = curr_count.toFixed(1);
             } else {
                 clearInterval(int);
             }
@@ -183,6 +204,17 @@
           return JSON.parse(text);
       }
 
+      function cameraStatus(){
+          var text = $.ajax({
+              type : 'get',
+              async:false,
+              url :"${ctx}/camera/search/listAll",
+              contentType: 'application/json',
+          }).responseText;
+          return JSON.parse(text);
+      }
+
+
      var vue =  new Vue({
           el:'#main-content',
           data:function () {
@@ -191,17 +223,17 @@
                   count:0,
                   count1:0,
                   count2:0,
-                  count3:0
+                  count3:0,
+                  cameras:[]
               }
           },
           methods :{
               switchChange:function (p) {
                   p.status = $('#hh').is(':checked');
                   var text = $.ajax({
-                      type : 'post',
+                      type : 'get',
                       async:true,
-                      data:JSON.stringify(p),
-                      url :"${ctx}/equipment/switch/operate",
+                      url :"http://"+ p.raspberryIp+"family-sub/switch/operate?gpios="+p.gpio,
                       contentType: 'application/json',
                       success:function (data) {
                           if(data == "false"){
@@ -210,16 +242,24 @@
                       }
                   });
               },
+              viewCamera:function (p) {
+                  console.log(p);
+              }
           },
           created:function(){
 //              this.switchPo = switchStatus();
-              countUp(32,this,"count");
-              countUp(22,this,"count1");
-              countUp(36,this,"count2");
+              countUp(32.5,this,"count");
+              countUp(22.3,this,"count1");
+              countUp(36.4,this,"count2");
               countUp(44,this,"count3");
+              this.cameras = cameraStatus()._embedded.cameraPoes;
           }
       });
 
+    $(function() {
+        //    fancybox
+        jQuery(".fancybox").fancybox();
+    });
 
   </script>
 

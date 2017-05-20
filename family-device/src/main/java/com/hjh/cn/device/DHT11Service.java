@@ -15,11 +15,12 @@ public class DHT11Service {
 
     public DHT11Service() {
 
+
         // setup wiringPi
-        if (Gpio.wiringPiSetup() == -1) {
-            System.out.println(" ==>> GPIO SETUP FAILED");
-            return;
-        }
+//        if (Gpio.wiringPiSetup() == -1) {
+//            System.out.println(" ==>> GPIO SETUP FAILED");
+//            return;
+//        }
 
         GpioUtil.export(3, GpioUtil.DIRECTION_OUT);
     }
@@ -51,7 +52,6 @@ public class DHT11Service {
             if (counter == 255) {
                 break;
             }
-
             /* ignore first 3 transitions */
             if (i >= 4 && i % 2 == 0) {
                 /* shove each bit into the storage bytes */
@@ -82,6 +82,7 @@ public class DHT11Service {
             map.put("c",c);
 //            System.out.println("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
             return map;
+
         } else {
             return null;
         }
@@ -91,12 +92,14 @@ public class DHT11Service {
         return dht11_dat[4] == (dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3] & 0xFF);
     }
 
-    public static void main(final String ars[]) throws Exception {
-        final DHT11Service dht = new DHT11Service();
-        for (int i = 0; i < 10; i++) {
-            Thread.sleep(2000);
-            dht.getTemperature(21);
+    public Map<String,Float> getData(int i) {
+        Map map = null;
+        while(map == null){
+            map =  getTemperature(i);
         }
-        System.out.println("Done!!");
+        return map;
     }
+
+
+
 }

@@ -20,7 +20,6 @@ public class UserPo extends ParentPo {
 
     private String userName;
 
-    @JsonIgnore
     private String userPassword;
 
     private String tel;
