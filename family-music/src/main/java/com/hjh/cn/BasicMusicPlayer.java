@@ -20,6 +20,13 @@ public class BasicMusicPlayer {
 
     private  boolean isPause = false;
     private boolean isEnd = false;
+    private boolean isEmpty = true;
+    public boolean isOver = false;
+
+    public float  value = -37;
+
+
+
 
     public BasicMusicPlayer(File file) {
         this.file = file;
@@ -60,7 +67,7 @@ public class BasicMusicPlayer {
                     .getControl(FloatControl.Type.MASTER_GAIN);
             // 音量minValue -80 maxValue 6
             // 设合适的初始音量
-            floatVoiceControl.setValue(-20);
+            floatVoiceControl.setValue(value);
             byte[] buf  = new byte[1024];
             int onceReadDataSize = 0;
             while((onceReadDataSize = audioInputStream.read(buf,0,buf.length))!= -1){
@@ -68,6 +75,7 @@ public class BasicMusicPlayer {
                     _pause();
                 }
                 if(isEnd){
+                    isOver = true;
                     return ;
                 }
                 sourceDataLine.write(buf, 0, onceReadDataSize);
@@ -107,6 +115,7 @@ public class BasicMusicPlayer {
         this.file = file;
         try {
             this.url =  file.toURL();
+            isEmpty =false;
         } catch (MalformedURLException e) {
             System.out.println("无法转化为URL");
             e.printStackTrace();
@@ -115,6 +124,7 @@ public class BasicMusicPlayer {
 
     public void load(URL url){
         this.url = url;
+        this.isEmpty = false;
     }
 
 
@@ -124,5 +134,13 @@ public class BasicMusicPlayer {
 
     public void end(){
         this.isEnd = true;
+    }
+
+    public void setEnd(boolean end) {
+        isEnd = end;
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
     }
 }

@@ -12,8 +12,8 @@
     <#include "__css.ftl">
     <link href="${ctx}/static/flatlab/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
     <link rel="stylesheet"  href="${ctx}/static/flatlab/css/gallery.css" />
-    <link type="text/css" href = "${ctx}/static/element-ui/element-ui.min.css">
-    <script type="text/javascript" src="${ctx}/static/element-ui/element-ui.min.js"></script>
+      <script  src="${ctx}/static/element-ui/element-ui.min.js"></script>
+      <link  rel="stylesheet" href = "${ctx}/static/element-ui/element-ui.min.css"/>
   </head>
 
   <body>
@@ -120,18 +120,34 @@
                               音乐
                           </header>
                           <div class="panel-body">
+                              <div class="form-group">
+                                  <label >音量 </label>
+                                  <el-slider v-model="deep" @change = "changeDeep"></el-slider>
+                              </div>
+                              <form class="form-inline"  method="post" action="${ctx}/upload/music" enctype="multipart/form-data">
+                                  <div class="form-group">
+                                      <button type="button" class="btn btn-danger" @click = "pauseMusic()">{{buttonValue}}</button>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="btn btn-default "><i class="fa fa-cloud-upload"></i> 上传</button>
+                                  </div>
+                                  <input type="file" name = "file">
+                              </form>
+
                               <table class="table table-striped table-advance table-hover">
                                   <thead>
                                   <tr>
-                                      <th>音量</th>
-                                      <th><el-slider v-model="value2"></el-slider></th>
+                                      <th>歌名</th>
+                                      <th>操作</th>
                                   </tr>
                                   </thead>
                                   <tbody id = "tbody">
-
+                                    <tr v-for ="music in musicList">
+                                        <td>{{music}}</td>
+                                        <td><button class="btn btn-primary btn-xs"  @click="musicPlay(music)"><i class="fa  fa-play"></i></button></td>
+                                    </tr>
                                   </tbody>
                               </table>
-
                           </div>
                       </section>
                   </div>
@@ -226,6 +242,16 @@
           return JSON.parse(text);
       }
 
+      function musicList(){
+          var text = $.ajax({
+              type : 'get',
+              async:false,
+              url :"${ctx}/music/list",
+              contentType: 'application/json',
+          }).responseText;
+          return JSON.parse(text);
+      }
+
 
      var vue =  new Vue({
           el:'#main-content',
@@ -237,7 +263,9 @@
                   count2:0,
                   count3:0,
                   cameras:[],
-                  value2:30
+                  deep:50,
+                  musicList:[],
+                  buttonValue:'暂停'
               }
           },
           methods :{
@@ -257,6 +285,41 @@
               },
               viewCamera:function (p) {
                   console.log(p);
+              },
+              changeDeep:function (val) {
+                  $.ajax({
+                      type : 'get',
+                      async:false,
+                      url :"${ctx}/music/deep?deep="+val,
+                      contentType: 'application/json',
+                  });
+              },
+              pauseMusic:function () {
+                  if(this.buttonValue == "暂停"){
+                      $.ajax({
+                          type : 'get',
+                          async:false,
+                          url :"${ctx}/music/pause",
+                          contentType: 'application/json',
+                      });
+                      this.buttonValue = "恢复";
+                  }else{
+                      $.ajax({
+                          type : 'get',
+                          async:false,
+                          url :"${ctx}/music/resume",
+                          contentType: 'application/json',
+                      });
+                      this.buttonValue = "暂停";
+                  }
+              },
+              musicPlay:function (music) {
+                  $.ajax({
+                      type : 'get',
+                      async:false,
+                      url :"${ctx}/music/play?url="+music,
+                      contentType: 'application/json',
+                  });
               }
           },
           created:function(){
@@ -265,6 +328,8 @@
               countUp(22.3,this,"count1");
               countUp(36.4,this,"count2");
               countUp(44,this,"count3");
+              this.musicList = musicList();
+              console.log(this.musicList);
               this.cameras = cameraStatus()._embedded.cameraPoes;
           }
       });
@@ -273,29 +338,9 @@
         //    fancybox
         jQuery(".fancybox").fancybox();
     });
-
-  </script>
-
-  <script>
-//      //owl carousel
-//      $(document).ready(function() {
-//          $("#owl-demo").owlCarousel({
-//              navigation : true,
-//              slideSpeed : 300,
-//              paginationSpeed : 400,
-//              singleItem : true,
-//			  autoPlay:true
-//
-//          });
-//      });
-      //custom select box
       $(function(){
           $('select.styled').customSelect();
       });
-//      $(window).on("resize",function(){
-//          var owl = $("#owl-demo").data("owlCarousel");
-//          owl.reinit();
-//      });
       $("#controlBar").addClass("active");
   </script>
   </body>

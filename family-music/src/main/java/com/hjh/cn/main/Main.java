@@ -9,15 +9,21 @@ import com.hjh.cn.BasicMusicPlayer;
 
 import javax.sound.sampled.FloatControl;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        File file = new File(args[0]);
         final BasicMusicPlayer basicMusicPlayer = new BasicMusicPlayer();
 
-        basicMusicPlayer.load(file);
+
+        try {
+            basicMusicPlayer.load(new URL("http://localhost:8330/family/files/11.mp3"));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         Thread  thread = new Thread(){
             @Override
@@ -40,6 +46,8 @@ public class Main {
                 case '2':
                     basicMusicPlayer.resume();
                     break;
+                case '3':
+                    basicMusicPlayer.end();
             }
         }
     }

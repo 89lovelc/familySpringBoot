@@ -43,7 +43,7 @@ public class FileUploadController {
         return "uploadForm";
     }
 
-    @GetMapping("music")
+    @GetMapping("music/list")
     @ResponseBody
     public List<String> listMusicFiles(){
         List<String> musicList = storageService.getMusicList();
@@ -61,16 +61,6 @@ public class FileUploadController {
                 .body(file);
     }
 
-//    @PostMapping("/")
-//    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-//                                   RedirectAttributes redirectAttributes) {
-//
-//        storageService.store(file);
-//        redirectAttributes.addFlashAttribute("message",
-//                "You successfully uploaded " + file.getOriginalFilename() + "!");
-//
-//        return "redirect:/fmr/person/profile-edit";
-//    }
 
     @PostMapping("/upload/avatar")
     public String handleUserAvatar(@RequestParam("file") MultipartFile file, HttpServletRequest request){
@@ -82,6 +72,13 @@ public class FileUploadController {
 
         return "redirect:/fmr/person/profile-edit";
     }
+
+    @PostMapping("upload/music")
+    public String uploadMusic(@RequestParam("file") MultipartFile file, HttpServletRequest request){
+        storageService.storDirect(file);
+        return "redirect:/fmr/index";
+    }
+
 
     @ExceptionHandler(StorageFileNotFoundException.class)
     public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
