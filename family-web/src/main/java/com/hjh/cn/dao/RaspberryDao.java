@@ -1,6 +1,6 @@
 package com.hjh.cn.dao;
 
-import com.hjh.cn.domain.RaspberryPo;
+import com.hjh.cn.po.RaspberryPo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,7 @@
 package com.hjh.cn.service;
 
-import com.hjh.cn.domain.EquipmentPo;
-import com.hjh.cn.po.SwitchPo;
+import com.hjh.cn.po.EquipmentPo;
+import com.hjh.cn.domain.SwitchVo;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public interface EquipmentService {
     List<EquipmentPo> getDatas();
 
-    List<SwitchPo> getSwitchStatus();
+    List<SwitchVo> getSwitchStatus();
 
-    String switchOperate(SwitchPo switchPo);
+    String switchOperate(SwitchVo switchPo);
 }

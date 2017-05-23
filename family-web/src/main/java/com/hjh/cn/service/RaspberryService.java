@@ -1,6 +1,6 @@
 package com.hjh.cn.service;
 
-import com.hjh.cn.domain.RaspberryPo;
+import com.hjh.cn.po.RaspberryPo;
 
 import java.util.List;
 

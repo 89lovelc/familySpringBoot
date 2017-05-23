@@ -40,7 +40,7 @@ public class StepChain {
         if(map != null && map.size() > 0){
             for (Map.Entry<String,Step> entry : map.entrySet() ){
                  step  = entry.getValue();
-                 if(step.getStepId() == step.getId()){
+                 if(step.getStepId() == step.getSenceId()){
                     break;
                  }
             }

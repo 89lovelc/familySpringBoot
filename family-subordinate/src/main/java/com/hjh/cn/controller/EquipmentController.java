@@ -2,6 +2,7 @@ package com.hjh.cn.controller;
 
 import com.hjh.cn.commom.GpioUtils;
 import com.hjh.cn.device.DHT11Service;
+import com.hjh.cn.device.StepperMotorGpioService;
 import com.hjh.cn.device.SwitchDeviceService;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class EquipmentController {
 
     SwitchDeviceService switchDeviceService = new SwitchDeviceService();
     DHT11Service dht11Service = new DHT11Service();
-
+    StepperMotorGpioService stepperMotorGpioService = new StepperMotorGpioService();
 
     //http://"+rasp.getRaspberryIp()+"/family-sub/switch/status?gpios="+equipmentPo.getEquipmentGpios()
     @RequestMapping("/switch/status")
@@ -48,7 +49,6 @@ public class EquipmentController {
         }else{
             switchDeviceService.close(gpios);
         }
-
         return status +"";
     }
 
@@ -60,5 +60,14 @@ public class EquipmentController {
         return map;
     }
 
+
+    @RequestMapping("/motor/operate")
+    @ResponseBody
+    public String  motorOperate(String gpios,double rotate){
+        System.out.println(gpios);
+        System.out.println(rotate);
+        stepperMotorGpioService.operate(gpios.split("\\|"),rotate);
+        return "success";
+    }
 
 }

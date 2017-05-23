@@ -85,13 +85,10 @@
                               </div>
                               <div class="form-group">
                                   <label for="exampleInputPassword1">硬件类型</label>
-                                  <#--<input v-model = "equipment.equipmentType" class="form-control" placeholder="xxx.xxx.xxx.xxx">-->
                                   <select v-model = "equipment.equipmentType" class="form-control m-bot15">
                                       <option value = "开关" >开关</option>
                                       <option value = "步进电机">步进电机</option>
                                       <option value = "继电器">继电器</option>
-                                      <option value = "待定">待定</option>
-                                      <option value = "待定">待定</option>
                                   </select>
                               </div>
                               <div class="form-group">

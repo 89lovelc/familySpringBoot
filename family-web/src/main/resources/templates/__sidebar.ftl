@@ -17,7 +17,7 @@
                 <ul class="sub">
                     <li id = "raspberry"><a  href="${ctx}/fmr/raspberry/raspberry">树莓派管理</a></li>
                     <li id = "device"><a  href="${ctx}/fmr/device/device">硬件管理</a></li>
-                    <li><a  href="header-color.html">模式管理</a></li>
+                    <li id ="scene"><a  href="${ctx}/fmr/scene/scene">模式管理</a></li>
                     <li id="camera"><a  href="${ctx}/fmr/camera/camera">摄像管理</a></li>
                 </ul>
             </li>

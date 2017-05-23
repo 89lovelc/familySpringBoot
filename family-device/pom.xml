@@ -18,8 +18,25 @@
                 <artifactId>pi4j-core</artifactId>
                 <version>1.1</version>
             </dependency>
+            <dependency>
+                <groupId>com.pi4j</groupId>
+                <artifactId>pi4j-device</artifactId>
+                <version>1.1</version>
+            </dependency>
     </dependencies>
 
+
+    <repositories>
+        <repository>
+            <id>oss-snapshots-repo</id>
+            <name>Sonatype OSS Maven Repository</name>
+            <url>https://oss.sonatype.org/content/groups/public</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -41,7 +58,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.hjh.cn.example.DHT11</mainClass>
+                            <mainClass>com.hjh.cn.example.StepperMotorGpioExample</mainClass>
                             <classpathPrefix>lib</classpathPrefix>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>

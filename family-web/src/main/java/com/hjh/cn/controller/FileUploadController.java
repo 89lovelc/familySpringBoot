@@ -1,6 +1,6 @@
 package com.hjh.cn.controller;
 
-import com.hjh.cn.domain.UserPo;
+import com.hjh.cn.po.UserPo;
 import com.hjh.cn.service.UserService;
 import com.hjh.cn.storage.StorageFileNotFoundException;
 import com.hjh.cn.storage.StorageService;

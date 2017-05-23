@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("com.hjh.cn")
-@EntityScan("com.hjh.cn.domain")
+@EntityScan("com.hjh.cn.po")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class,args);

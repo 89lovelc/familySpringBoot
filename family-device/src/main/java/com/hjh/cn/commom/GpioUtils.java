@@ -31,8 +31,14 @@ public class GpioUtils {
     private static final GpioPinDigitalMultipurpose GPIO_16;
     private GpioUtils(){}
 
+    private static final GpioController gpio;
+
+    public static GpioController controller(){
+        return gpio;
+    }
+
     static {
-        GpioController gpio = GpioFactory.getInstance();
+        gpio = GpioFactory.getInstance();
         gpioMap = new HashMap<>();
         GPIO_00 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_00, "GPIO_00", PinMode.DIGITAL_OUTPUT);
         GPIO_01 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_01, "GPIO_01", PinMode.DIGITAL_OUTPUT);
@@ -73,6 +79,8 @@ public class GpioUtils {
     public static GpioUtils getInstance(){
         return gpioMapper;
     }
+
+
 
     public GpioPinDigitalMultipurpose getGpioPinDigitalMultipurpose(String gpio){
         return gpioMap.get(gpio);

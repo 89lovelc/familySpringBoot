@@ -1,11 +1,11 @@
-package com.hjh.cn.po;
+package com.hjh.cn.domain;
 
 import java.io.Serializable;
 
 /**
  * Created by 89lovelc on 2017/5/11.
  */
-public class SwitchPo implements Serializable {
+public class SwitchVo implements Serializable {
 
     private String equipmentName;
 
@@ -15,10 +15,10 @@ public class SwitchPo implements Serializable {
 
     private String raspberryIp;
 
-    public SwitchPo() {
+    public SwitchVo() {
     }
 
-    public SwitchPo(String equipmentName, boolean status, String gpio, String raspberryIp) {
+    public SwitchVo(String equipmentName, boolean status, String gpio, String raspberryIp) {
         this.equipmentName = equipmentName;
         this.status = status;
         this.gpio = gpio;

@@ -5,7 +5,7 @@ package com.hjh.cn.step;
  */
 public abstract class Step {
 
-    private String id;
+    private String senceId;
 
     private String stepId;
 
@@ -19,8 +19,8 @@ public abstract class Step {
 
     public Step(){};
 
-    public Step(String id, String stepId, String nextStepId, String raspberryIp, String gpios, String content) {
-        this.id = id;
+    public Step(String senceId, String stepId, String nextStepId, String raspberryIp, String gpios, String content) {
+        this.senceId = senceId;
         this.stepId = stepId;
         this.nextStepId = nextStepId;
         this.raspberryIp = raspberryIp;
@@ -29,12 +29,12 @@ public abstract class Step {
     }
 
 
-    public String getId() {
-        return id;
+    public String getSenceId() {
+        return senceId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSenceId(String senceId) {
+        this.senceId = senceId;
     }
 
     public String getStepId() {

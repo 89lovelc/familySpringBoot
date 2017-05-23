@@ -36,7 +36,8 @@ public class MusicController {
     @ResponseBody
     public String play(String url){
         try {
-            //TODO 黄建辉 硬编码
+            //TODO 黄建辉 硬编码、
+            //TODO 不支持 中文
             String str = "http://localhost:8330/family/files/"+url;
             MusicFactory.load(new URL(str));
         } catch (MalformedURLException e) {

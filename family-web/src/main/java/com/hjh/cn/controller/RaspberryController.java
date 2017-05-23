@@ -1,6 +1,6 @@
 package com.hjh.cn.controller;
 
-import com.hjh.cn.domain.RaspberryPo;
+import com.hjh.cn.po.RaspberryPo;
 import com.hjh.cn.service.RaspberryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

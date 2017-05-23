@@ -1,4 +1,4 @@
-package com.hjh.cn.domain;
+package com.hjh.cn.po;
 
 import java.io.Serializable;
 

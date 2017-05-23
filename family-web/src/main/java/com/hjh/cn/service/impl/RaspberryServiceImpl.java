@@ -2,9 +2,8 @@ package com.hjh.cn.service.impl;
 
 import com.hjh.cn.dao.EquipmentDao;
 import com.hjh.cn.dao.RaspberryDao;
-import com.hjh.cn.domain.RaspberryPo;
+import com.hjh.cn.po.RaspberryPo;
 import com.hjh.cn.service.RaspberryService;
-import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

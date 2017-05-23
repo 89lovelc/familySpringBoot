@@ -1,6 +1,6 @@
 package com.hjh.cn.dao;
 
-import com.hjh.cn.domain.EquipmentPo;
+import com.hjh.cn.po.EquipmentPo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +23,7 @@ public interface EquipmentDao extends JpaRepository<EquipmentPo,String>,JpaSpeci
 
     @Query("from EquipmentPo where equipmentId = :equipmentId")
     EquipmentPo findById(@Param("equipmentId") String equipmentId);
+
+    @Query("from EquipmentPo")
+    List<EquipmentPo> listAll();
 }

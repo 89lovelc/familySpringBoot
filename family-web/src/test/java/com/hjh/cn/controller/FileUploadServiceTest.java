@@ -20,6 +20,6 @@ public class FileUploadServiceTest {
 
     @Test
     public void test(){
-        System.out.println(fileSystemStorageService.getMusicList());;
+        System.out.println(fileSystemStorageService.getMusicList());
     }
 }

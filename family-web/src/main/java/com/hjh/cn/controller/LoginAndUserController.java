@@ -1,21 +1,13 @@
 package com.hjh.cn.controller;
 
-import com.hjh.cn.domain.UserPo;
-import com.hjh.cn.po.Message;
+import com.hjh.cn.po.UserPo;
 import com.hjh.cn.service.UserService;
-import org.apache.http.protocol.HTTP;
-import org.hibernate.Session;
-import org.hibernate.boot.jaxb.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import sun.misc.Request;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.util.HashMap;
 
 /**

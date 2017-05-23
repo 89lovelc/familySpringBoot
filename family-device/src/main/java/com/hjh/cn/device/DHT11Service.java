@@ -14,14 +14,6 @@ public class DHT11Service {
     private final int[]         dht11_dat   = { 0, 0, 0, 0, 0 };
 
     public DHT11Service() {
-
-
-        // setup wiringPi
-//        if (Gpio.wiringPiSetup() == -1) {
-//            System.out.println(" ==>> GPIO SETUP FAILED");
-//            return;
-//        }
-
         GpioUtil.export(3, GpioUtil.DIRECTION_OUT);
     }
 

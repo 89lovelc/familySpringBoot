@@ -12,6 +12,13 @@ import com.hjh.cn.tools.HttpClientUtils;
  *  content 只接受
  */
 public class SwitchStep extends Step {
+
+
+    public SwitchStep(){}
+    public SwitchStep(String senceId, String stepId, String nextStepId, String raspberryIp, String gpios, String content) {
+        super(senceId, stepId, nextStepId, raspberryIp, gpios, content);
+    }
+
     @Override
     public void handle() {
         String content = this.getContent();

@@ -1,7 +1,7 @@
 package com.hjh.cn.service.impl;
 
 import com.hjh.cn.dao.UserDao;
-import com.hjh.cn.domain.UserPo;
+import com.hjh.cn.po.UserPo;
 import com.hjh.cn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

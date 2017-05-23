@@ -2,9 +2,9 @@ package com.hjh.cn.service.impl;
 
 import com.hjh.cn.dao.EquipmentDao;
 import com.hjh.cn.dao.RaspberryDao;
-import com.hjh.cn.domain.EquipmentPo;
-import com.hjh.cn.domain.RaspberryPo;
-import com.hjh.cn.po.SwitchPo;
+import com.hjh.cn.po.EquipmentPo;
+import com.hjh.cn.po.RaspberryPo;
+import com.hjh.cn.domain.SwitchVo;
 import com.hjh.cn.service.EquipmentService;
 import com.hjh.cn.tools.HttpClientUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +41,10 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public List<SwitchPo> getSwitchStatus() {
+    public List<SwitchVo> getSwitchStatus() {
         List<EquipmentPo> list = equipmentDao.findByEquipmentType("开关");
         EquipmentPo equipmentPo = null;
-        List<SwitchPo> switchPos = new ArrayList<>();
+        List<SwitchVo> switchPos = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             equipmentPo = list.get(i);
             //TODO 黄建辉
@@ -56,7 +56,7 @@ public class EquipmentServiceImpl implements EquipmentService {
             try {
                String result =  HttpClientUtils.get(url,null,null,null);
                boolean status = result.equals("true") ? true :false;
-               switchPos.add(new SwitchPo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios(),rasp.getRaspberryIp()));
+               switchPos.add(new SwitchVo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios(),rasp.getRaspberryIp()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -65,7 +65,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    public String switchOperate(SwitchPo switchPo) {
+    public String switchOperate(SwitchVo switchPo) {
         String url = "http://"+switchPo.getRaspberryIp()+"/family-sub/switch/toggle/gpios="+switchPo.getGpio();
         try {
            return HttpClientUtils.get(url,null,null,null);

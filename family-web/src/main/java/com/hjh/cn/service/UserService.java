@@ -1,6 +1,6 @@
 package com.hjh.cn.service;
 
-import com.hjh.cn.domain.UserPo;
+import com.hjh.cn.po.UserPo;
 
 /**
  * Created by 89lovelc on 2017/5/5.

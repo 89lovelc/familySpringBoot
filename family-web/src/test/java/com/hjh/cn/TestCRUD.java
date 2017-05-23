@@ -1,7 +1,7 @@
 package com.hjh.cn;
 
 import com.hjh.cn.dao.UserDao;
-import com.hjh.cn.domain.UserPo;
+import com.hjh.cn.po.UserPo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
