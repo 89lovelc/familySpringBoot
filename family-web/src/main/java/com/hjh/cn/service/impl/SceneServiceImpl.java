@@ -10,6 +10,7 @@ import com.hjh.cn.po.StepPo;
 import com.hjh.cn.service.SceneService;
 import com.hjh.cn.step.Step;
 import com.hjh.cn.step.StepChain;
+import com.hjh.cn.step.impl.MotorStep;
 import com.hjh.cn.step.impl.SwitchStep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,7 @@ public class SceneServiceImpl implements SceneService{
             if(equipmentPo.getEquipmentType().equals("开关")){
                 step = new SwitchStep(stepPo.getSceneId(),stepPo.getStepId(),stepPo.getNextStepId(),rasp.getRaspberryIp(),equipmentPo.getEquipmentGpios(),strs[1]);
             }else if(equipmentPo.getEquipmentType().equals("步进电机")){
-
+                step = new MotorStep(stepPo.getSceneId(),stepPo.getStepId(),stepPo.getNextStepId(),rasp.getRaspberryIp(),equipmentPo.getEquipmentGpios(),strs[1]);
             }
 
             //TODO 黄建辉 可以扩展
@@ -101,7 +102,7 @@ public class SceneServiceImpl implements SceneService{
         scenePo.setSceneId(sceneVo.getSceneId());
         scenePo.setUserId(userId);
         String sceneId = sceneVo.getSceneId();
-        if(sceneId == null){
+        if(sceneId == null || "".equalsIgnoreCase(sceneId)){
             sceneId = UUID.randomUUID().toString().replace("-","");
             scenePo.setSceneId(sceneId);
             sceneDao.save(scenePo);

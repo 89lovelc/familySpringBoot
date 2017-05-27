@@ -14,6 +14,7 @@
   <body>
 
   <section id="container" >
+
       <!--header start-->
       <#include "../__header.ftl">
       <!--header end-->
@@ -22,6 +23,7 @@
       <!--sidebar end-->
       <!--main content start-->
       <section id="main-content">
+      <#include "../confirmModal.ftl">
           <section class="wrapper">
               <div class="row">
                   <div class="col-lg-12">
@@ -134,21 +136,27 @@
                   pos:[],
                   camera:$.extend({},cameraPo),
                   cameras:[],
-                  cameraStr:''
+                  cameraStr:'',
+                  temp:''
               };
           },
           methods :{
-              deletePo:function (po) {
+              confirmModal:function () {
+                  $("#confirmModal").modal("hide");
                   var _self = this;
                   $.ajax({
                       type:'delete',
                       async:true,
-                      url:'${ctx}/camera/'+po.cameraId,
+                      url:'${ctx}/camera/'+_self.temp.cameraId,
                       contentType: 'application/json',
                       success:function(data){
                           _self.pos = cameraAll()._embedded.cameraPoes;
                       }
                   });
+              },
+              deletePo:function (po) {
+                  $("#confirmModal").modal("show");
+                  this.temp = po;
               },
               editPo:function (po) {
                   this.camera = po;
@@ -161,7 +169,6 @@
               },
               savePo:function () {
                   var _self = this;
-                  console.log(this.camera);
                   $.ajax({
                       type:'post',
                       async:true,

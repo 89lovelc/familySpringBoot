@@ -122,7 +122,7 @@
                   </div>
               </div>
           </div>
-
+          <#include  "../confirmModal.ftl">
 
       <!--main content end-->
   </section>
@@ -148,6 +148,7 @@
       var s = {
           sceneId:'',
           sceneName:'',
+          userName:userName,
           stepList:[]
       }
 
@@ -158,32 +159,38 @@
                   equipments:[],
                   equipment:$.extend({},equip),
                   scene:$.extend({},s),
-                  scenes:[]
+                  scenes:[],
+                  temp:''
               };
           },
           methods :{
-              clickDelete:function (row) {
+              confirmModal:function () {
+                  $("#confirmModal").modal("hide");
                   var num =  -1;
+                  console.log(this.temp);
                   $.ajax({
                       type : 'get',
                       data:'',
                       async:false,
-                      url :"${ctx}/scene/delete/"+row.sceneId,
+                      url :"${ctx}/scene/delete/"+this.temp.sceneId,
                       contentType: 'application/json',
                   });
                   for(var i = 0 ; i < this.scenes.length ; i ++){
-                      if( this.scenes[i].sceneId == row.sceneId){
+                      if( this.scenes[i].sceneId == this.temp.sceneId){
                           break;
                       }
                   }
                   this.scenes.splice(i,1);
                   this.scene = $.extend({},s);
               },
+              clickDelete:function (row) {
+                  $("#confirmModal").modal("show");
+                  this.temp =row;
+              },
               addElement:function () {
                   this.scene = $.extend({},s);
               },
               clickEdit:function (po) {
-                    console.log(po)
                     this.scene = po;
               },
               saveEquipment:function () {

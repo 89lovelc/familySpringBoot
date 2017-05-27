@@ -114,6 +114,32 @@
                           </div>
                       </section>
                   </div>
+
+                  <div class="col-lg-4">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              摄像头
+                          </header>
+                          <div class="panel-body">
+                              <table class="table table-striped table-advance table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>摄像头名称</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody id = "tbody">
+                                  <tr v-for = "p in cameras" >
+                                      <td>{{p.cameraName}}</td>
+                                      <td>
+                                          <button class="btn btn-primary btn-xs"  @click="viewCamera(p)"><i class="fa fa-eye"></i></button>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </section>
+                  </div>
                   <div class="col-lg-4">
                       <section class="panel">
                           <header class="panel-heading">
@@ -142,33 +168,35 @@
                                   </tr>
                                   </thead>
                                   <tbody id = "tbody">
-                                    <tr v-for ="music in musicList">
-                                        <td>{{music}}</td>
-                                        <td><button class="btn btn-primary btn-xs"  @click="musicPlay(music)"><i class="fa  fa-play"></i></button></td>
-                                    </tr>
+                                  <tr v-for ="music in musicList">
+                                      <td>{{music}}</td>
+                                      <td><button class="btn btn-primary btn-xs"  @click="musicPlay(music)"><i class="fa  fa-play"></i></button></td>
+                                  </tr>
                                   </tbody>
                               </table>
                           </div>
                       </section>
                   </div>
+              </div>
+              <div class="row">
                   <div class="col-lg-4">
                       <section class="panel">
                           <header class="panel-heading">
-                              摄像头
+                              情景模式
                           </header>
                           <div class="panel-body">
                               <table class="table table-striped table-advance table-hover">
                                   <thead>
                                   <tr>
-                                      <th>摄像头名称</th>
+                                      <th>情景名称</th>
                                       <th>操作</th>
                                   </tr>
                                   </thead>
                                   <tbody id = "tbody">
-                                  <tr v-for = "p in cameras" >
-                                      <td>{{p.cameraName}}</td>
+                                  <tr v-for = "p in scenes" >
+                                      <td>{{p.sceneName}}</td>
                                       <td>
-                                          <button class="btn btn-primary btn-xs"  @click="viewCamera(p)"><i class="fa fa-eye"></i></button>
+                                          <button type="button" @click = "sceneClick(p.sceneId)" class="btn btn-success">启动</button>
                                       </td>
                                   </tr>
                                   </tbody>
@@ -232,11 +260,12 @@
           return JSON.parse(text);
       }
 
-      function cameraStatus(){
+      function getData(url,type,data){
           var text = $.ajax({
-              type : 'get',
+              type : type,
+              data:data,
               async:false,
-              url :"${ctx}/camera/search/listAll",
+              url :"${ctx}"+url,
               contentType: 'application/json',
           }).responseText;
           return JSON.parse(text);
@@ -265,7 +294,8 @@
                   cameras:[],
                   deep:50,
                   musicList:[],
-                  buttonValue:'暂停'
+                  buttonValue:'暂停',
+                  scenes:[]
               }
           },
           methods :{
@@ -320,6 +350,14 @@
                       url :"${ctx}/music/play?url="+music,
                       contentType: 'application/json',
                   });
+              },
+              sceneClick:function (p) {
+                  $.ajax({
+                      type : 'get',
+                      async:false,
+                      url :"${ctx}/scene/operater/open/"+p,
+                      contentType: 'application/json',
+                  });
               }
           },
           created:function(){
@@ -330,7 +368,8 @@
               countUp(44,this,"count3");
               this.musicList = musicList();
               console.log(this.musicList);
-              this.cameras = cameraStatus()._embedded.cameraPoes;
+              this.cameras = getData("/camera/search/listAll",'get',{})._embedded.cameraPoes;
+              this.scenes = getData("/scene",'get',{})._embedded.scenePoes;
           }
       });
 

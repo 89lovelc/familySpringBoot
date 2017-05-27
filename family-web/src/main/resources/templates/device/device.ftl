@@ -111,6 +111,7 @@
                   </div>
               </div>
           </div>
+          <#include  "../confirmModal.ftl" >
       </section>
       <!--main content end-->
   </section>
@@ -148,21 +149,27 @@
               return {
                   pos:[],
                   equipment:$.extend({},equip),
-                  rasps:[]
+                  rasps:[],
+                  temp:''
               };
           },
           methods :{
-              deletePo:function (po) {
+              confirmModal:function () {
+                  $("#confirmModal").modal("hide");
                   var _self = this;
                   $.ajax({
                       type:'delete',
                       async:true,
-                      url:'${ctx}/equipment/'+po.equipmentId,
+                      url:'${ctx}/equipment/'+_self.temp.equipmentId,
                       contentType: 'application/json',
                       success:function(data){
                           _self.pos = initData();
                       }
                   });
+              },
+              deletePo:function (po) {
+                  $("#confirmModal").modal("show");
+                  this.temp = po;
               },
               editPo:function (po) {
                   this.equipment = po;

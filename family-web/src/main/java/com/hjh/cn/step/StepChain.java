@@ -15,7 +15,6 @@ public class StepChain {
     //<stepId,<Step,nextStepId>>
     private Map<String,Step> map = new HashMap<>();
 
-    private StepChain chain =  new StepChain();
 
     public StepChain(){}
 

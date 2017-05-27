@@ -61,9 +61,11 @@ public class EquipmentController {
     }
 
 
-    @RequestMapping("/motor/operate")
+
+    //TODO 黄建辉  可能接收不到
+    @RequestMapping("/motor/operate/{gpios}/{rotate}")
     @ResponseBody
-    public String  motorOperate(String gpios,double rotate){
+    public String  motorOperate(@PathVariable("gpios") String gpios,@PathVariable("gpios") double rotate){
         System.out.println(gpios);
         System.out.println(rotate);
         stepperMotorGpioService.operate(gpios.split("\\|"),rotate);

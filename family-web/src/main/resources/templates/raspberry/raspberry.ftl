@@ -95,6 +95,7 @@
                   </div>
               </div>
           </div>
+          <#include "../confirmModal.ftl">
       </section>
       <!--main content end-->
   </section>
@@ -121,21 +122,27 @@
           data:function () {
               return {
                   pos:[],
-                  raspberry:$.extend({},rasp)
+                  raspberry:$.extend({},rasp),
+                  temp:''
               };
           },
           methods :{
-              deletePo:function (po) {
+              confirmModal:function () {
+                  $("#confirmModal").modal("hide");
                   var _self = this;
                   $.ajax({
                       type:'delete',
                       async:true,
-                      url:'${ctx}/rasp/'+po.raspberryId,
+                      url:'${ctx}/rasp/'+_self.temp.raspberryId,
                       contentType: 'application/json',
                       success:function(data){
                           _self.pos = initData();
                       }
                   });
+              },
+              deletePo:function (po) {
+                  $("#confirmModal").modal("show");
+                  this.temp = po;
               },
               editPo:function (po) {
                   this.raspberry = po;

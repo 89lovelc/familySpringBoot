@@ -26,9 +26,9 @@ public class SceneController {
      * @param id
      * @return
      */
-    @RequestMapping("/operater/open/")
+    @RequestMapping("/operater/open/{id}")
     @ResponseBody
-    public String openOne(String id){
+    public String openOne(@PathVariable String id){
         boolean tj = sceneService.operate(id);
        return "success";
     }
