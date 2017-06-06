@@ -204,6 +204,32 @@
                           </div>
                       </section>
                   </div>
+                  <div class="col-lg-4">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              步进电机
+                          </header>
+                          <div class="panel-body">
+                              <table class="table table-striped table-advance table-hover">
+                                  <thead>
+                                  <tr>
+                                      <th>步进电机</th>
+                                      <th>操作</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody id = "tbody">
+                                  <tr v-for = "p in motors" >
+                                      <td>{{p.equipmentName}}</td>
+                                      <td>
+                                          <button type="button" class="btn "><i class="fa  fa-angle-up"></i></button>
+                                          <button type="button" class="btn "><i class="fa  fa-angle-down"></i></button>
+                                      </td>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </section>
+                  </div>
               </div>
               <!--state overview end-->
           </section>
@@ -265,7 +291,8 @@
               type : type,
               data:data,
               async:false,
-              url :"${ctx}"+url,
+              dataType:'jsonp',
+              url : url.indexOf('http')>=0?url:"${ctx}"+url,
               contentType: 'application/json',
           }).responseText;
           return JSON.parse(text);
@@ -295,7 +322,8 @@
                   deep:50,
                   musicList:[],
                   buttonValue:'暂停',
-                  scenes:[]
+                  scenes:[],
+                  motors:[]
               }
           },
           methods :{
@@ -361,15 +389,20 @@
               }
           },
           created:function(){
-//              this.switchPo = switchStatus();
-              countUp(32.5,this,"count");
-              countUp(22.3,this,"count1");
+              this.switchPo = switchStatus();
+//              var map = getData("http://192.168.1.105:8440/family-sub/dht/data?gpio=15",'get',{});
+
+
+
+//              countUp(map.c,this,"count");
+//              countUp(map.h,this,"count1");
               countUp(36.4,this,"count2");
               countUp(44,this,"count3");
               this.musicList = musicList();
               console.log(this.musicList);
               this.cameras = getData("/camera/search/listAll",'get',{})._embedded.cameraPoes;
               this.scenes = getData("/scene",'get',{})._embedded.scenePoes;
+              this.motors = getData("/equipment/search/findByEquipmentType?type=步进电机",'get',{})._embedded.equipmentPoes;
           }
       });
 

@@ -54,8 +54,9 @@ public class EquipmentServiceImpl implements EquipmentService {
             //TODO 黄建辉
             String url = "http://"+rasp.getRaspberryIp()+"/family-sub/switch/status?gpios="+equipmentPo.getEquipmentGpios();
             try {
-               String result =  HttpClientUtils.get(url,null,null,null);
-               boolean status = result.equals("true") ? true :false;
+//               String result =  HttpClientUtils.get(url,null,null,null);
+//               boolean status = result.equals("true") ? true :false;
+                boolean status = true;
                switchPos.add(new SwitchVo(equipmentPo.getEquipmentName(),status,equipmentPo.getEquipmentGpios(),rasp.getRaspberryIp()));
             } catch (Exception e) {
                 e.printStackTrace();

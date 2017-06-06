@@ -17,7 +17,7 @@ public class DHT11Service {
         GpioUtil.export(3, GpioUtil.DIRECTION_OUT);
     }
 
-    public Map<String,Float> getTemperature(final int pin) {
+    public Map<String,String> getTemperature(final int pin) {
         int laststate = Gpio.HIGH;
         int j = 0;
         dht11_dat[0] = dht11_dat[1] = dht11_dat[2] = dht11_dat[3] = dht11_dat[4] = 0;
@@ -69,10 +69,11 @@ public class DHT11Service {
                 c = -c;
             }
             final float f = c * 1.8f + 32;
-            HashMap<String,Float> map  = new HashMap<>();
-            map.put("h",h);
-            map.put("c",c);
-//            System.out.println("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
+
+            HashMap<String,String> map  = new HashMap<>();
+            map.put("h",h+"");
+            map.put("c",c+"");
+            System.out.println("Humidity = " + h + " Temperature = " + c + "(" + f + "f)");
             return map;
 
         } else {
@@ -84,9 +85,9 @@ public class DHT11Service {
         return dht11_dat[4] == (dht11_dat[0] + dht11_dat[1] + dht11_dat[2] + dht11_dat[3] & 0xFF);
     }
 
-    public Map<String,Float> getData(int i) {
+    public Map<String,String> getData(int i) {
         Map map = null;
-        while(map == null){
+        while(map == null ){
             map =  getTemperature(i);
         }
         return map;

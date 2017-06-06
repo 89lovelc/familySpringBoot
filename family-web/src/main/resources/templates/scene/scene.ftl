@@ -210,7 +210,6 @@
               },
               savePo:function () {
                   var _self = this;
-                  console.log(this.scene);
                   $.ajax({
                       type:'post',
                       async:true,
@@ -222,6 +221,8 @@
                               _self.scenes.push(_self.scene);
                           }
                           _self.scene = $.extend({},s);
+                          _self.scene.stepList = [];
+
                       }
                   });
               },

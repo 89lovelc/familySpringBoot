@@ -110,11 +110,11 @@ public class SceneServiceImpl implements SceneService{
             sceneDao.save(scenePo);
             stepDao.deleteStepPoBySceneId(sceneVo.getSceneId());
         }
-
         List<StepVo> list = sceneVo.getStepList();
         StepPo stepPo = null;
         StepVo stepVo = null;
         String nextStepId = null;
+        String temp = null;
         for (int i = 0; i < list.size(); i++) {
             stepVo  = list.get(i);
             if(i == 0){
@@ -127,8 +127,9 @@ public class SceneServiceImpl implements SceneService{
             }else if((i + 1) == list.size()){
                     stepPo = new StepPo(nextStepId,sceneId,null,stepVo.getEquipmentId()+"|"+stepVo.getContent().trim());
             }else{
+                temp = nextStepId;
                 nextStepId = UUID.randomUUID().toString().replace("-","");
-                stepPo = new StepPo(sceneId,sceneId,nextStepId,stepVo.getEquipmentId());;
+                stepPo = new StepPo(temp,sceneId,nextStepId,stepVo.getEquipmentId()+"|"+stepVo.getContent().trim());
             }
             stepDao.save(stepPo);
         }

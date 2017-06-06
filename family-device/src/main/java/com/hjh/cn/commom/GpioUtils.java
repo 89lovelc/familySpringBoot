@@ -29,6 +29,19 @@ public class GpioUtils {
     private static final GpioPinDigitalMultipurpose GPIO_14;
     private static final GpioPinDigitalMultipurpose GPIO_15;
     private static final GpioPinDigitalMultipurpose GPIO_16;
+    private static final GpioPinDigitalMultipurpose GPIO_17;
+    private static final GpioPinDigitalMultipurpose GPIO_18;
+    private static final GpioPinDigitalMultipurpose GPIO_19;
+    private static final GpioPinDigitalMultipurpose GPIO_20;
+    private static final GpioPinDigitalMultipurpose GPIO_21;
+    private static final GpioPinDigitalMultipurpose GPIO_22;
+    private static final GpioPinDigitalMultipurpose GPIO_23;
+    private static final GpioPinDigitalMultipurpose GPIO_24;
+    private static final GpioPinDigitalMultipurpose GPIO_25;
+    private static final GpioPinDigitalMultipurpose GPIO_26;
+    private static final GpioPinDigitalMultipurpose GPIO_27;
+    private static final GpioPinDigitalMultipurpose GPIO_28;
+    private static final GpioPinDigitalMultipurpose GPIO_29;
     private GpioUtils(){}
 
     private static final GpioController gpio;
@@ -57,6 +70,20 @@ public class GpioUtils {
         GPIO_14 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_14, "GPIO_14", PinMode.DIGITAL_OUTPUT);
         GPIO_15 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_15, "GPIO_15", PinMode.DIGITAL_OUTPUT);
         GPIO_16 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_16, "GPIO_16", PinMode.DIGITAL_OUTPUT);
+        GPIO_17 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_17, "GPIO_17", PinMode.DIGITAL_OUTPUT);
+        GPIO_18 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_18, "GPIO_18", PinMode.DIGITAL_OUTPUT);
+        GPIO_19 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_19, "GPIO_19", PinMode.DIGITAL_OUTPUT);
+        GPIO_20 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_20, "GPIO_20", PinMode.DIGITAL_OUTPUT);
+        GPIO_21 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_21, "GPIO_21", PinMode.DIGITAL_OUTPUT);
+        GPIO_22 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_22, "GPIO_22", PinMode.DIGITAL_OUTPUT);
+        GPIO_23 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_23, "GPIO_23", PinMode.DIGITAL_OUTPUT);
+        GPIO_24 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_24, "GPIO_24", PinMode.DIGITAL_OUTPUT);
+        GPIO_25 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_25, "GPIO_25", PinMode.DIGITAL_OUTPUT);
+        GPIO_26 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_26, "GPIO_26", PinMode.DIGITAL_OUTPUT);
+        GPIO_27 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_27, "GPIO_27", PinMode.DIGITAL_OUTPUT);
+        GPIO_28 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_28, "GPIO_28", PinMode.DIGITAL_OUTPUT);
+        GPIO_29 = gpio.provisionDigitalMultipurposePin(RaspiPin.GPIO_29, "GPIO_29", PinMode.DIGITAL_OUTPUT);
+
         gpioMap.put("GPIO_00", GPIO_00);
         gpioMap.put("GPIO_01", GPIO_01);
         gpioMap.put("GPIO_02", GPIO_02);
@@ -74,6 +101,19 @@ public class GpioUtils {
         gpioMap.put("GPIO_14", GPIO_14);
         gpioMap.put("GPIO_15", GPIO_15);
         gpioMap.put("GPIO_16", GPIO_16);
+        gpioMap.put("GPIO_17", GPIO_17);
+        gpioMap.put("GPIO_18", GPIO_18);
+        gpioMap.put("GPIO_19", GPIO_19);
+        gpioMap.put("GPIO_20", GPIO_20);
+        gpioMap.put("GPIO_21", GPIO_21);
+        gpioMap.put("GPIO_22", GPIO_22);
+        gpioMap.put("GPIO_23", GPIO_23);
+        gpioMap.put("GPIO_24", GPIO_24);
+        gpioMap.put("GPIO_25", GPIO_25);
+        gpioMap.put("GPIO_26", GPIO_26);
+        gpioMap.put("GPIO_27", GPIO_27);
+        gpioMap.put("GPIO_28", GPIO_28);
+        gpioMap.put("GPIO_29", GPIO_29);
     }
 
     public static GpioUtils getInstance(){

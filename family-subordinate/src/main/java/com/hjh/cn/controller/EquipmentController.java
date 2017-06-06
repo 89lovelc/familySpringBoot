@@ -55,17 +55,16 @@ public class EquipmentController {
 
     @RequestMapping("/dht/data")
     @ResponseBody
-    public Map<String,Float> dhtData(String gpio){
-        Map<String, Float> map = dht11Service.getData(Integer.parseInt(gpio));
+    public Map<String,String> dhtData(String gpio){
+        Map<String, String> map = dht11Service.getData(Integer.parseInt(gpio));
         return map;
     }
 
 
 
-    //TODO 黄建辉  可能接收不到
     @RequestMapping("/motor/operate/{gpios}/{rotate}")
     @ResponseBody
-    public String  motorOperate(@PathVariable("gpios") String gpios,@PathVariable("gpios") double rotate){
+    public String  motorOperate(@PathVariable("gpios") String gpios,@PathVariable("rotate") double rotate){
         System.out.println(gpios);
         System.out.println(rotate);
         stepperMotorGpioService.operate(gpios.split("\\|"),rotate);
